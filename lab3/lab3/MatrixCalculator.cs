@@ -3,7 +3,7 @@
 namespace lab3 {
     public class MatrixCalculator {
 
-        private static MatrixCalculator instance;
+        private static MatrixCalculator Instance;
 
         private MatrixCalculator() {
 
@@ -13,91 +13,91 @@ namespace lab3 {
 
             get {
 
-                if (instance == null) {
+                if (Instance == null) {
 
-                    instance = new MatrixCalculator();
+                    Instance = new MatrixCalculator();
                 }
 
-                return instance;
+                return Instance;
             }
         }
 
         private SquareMatrixClone CreateSquareMatrix() {
 
-            var notSet = true;
+            var NotSet = true;
 
             Console.WriteLine("Введите имя матрицы: ");
-            var name = Console.ReadLine();
+            var Name = Console.ReadLine();
 
             Console.WriteLine("\n");
             Console.WriteLine("Создать рандомную матрицу? \n");
             Console.WriteLine("Нет        0");
             Console.WriteLine("Да        1");
 
-            while (notSet) {
+            while (NotSet) {
 
                 switch (Console.ReadLine()) {
 
                     case "0":
-                        notSet = false;
+                        NotSet = false;
                         break;
                     case "1":
-                        return new SquareMatrixClone(name);
+                        return new SquareMatrixClone(Name);
                     default:
                         Console.WriteLine("Ошибка, попробуйте снова.");
                         break;
                 }
             }
 
-            notSet = true;
+            NotSet = true;
 
-            var size = 0;
+            var Size = 0;
 
-            while (notSet) {
+            while (NotSet) {
 
                 Console.WriteLine("\n");
                 Console.WriteLine("Введите длину матрицы: ");
 
-                if (!int.TryParse(Console.ReadLine(), out size) || size <= 1) {
+                if (!int.TryParse(Console.ReadLine(), out Size) || Size <= 1) {
 
                     Console.WriteLine("Неправильное значение, или формат, попробуйте снова.");
                 } else {
 
-                    notSet = false;
+                    NotSet = false;
                 }
             }
 
-            notSet = true;
+            NotSet = true;
 
             Console.WriteLine("\n");
             Console.WriteLine("Генерация рандомных элементов? \n");
             Console.WriteLine("Нет        0");
             Console.WriteLine("Да        1");
 
-            while (notSet) {
+            while (NotSet) {
 
                 switch (Console.ReadLine()) {
 
                     case "0":
-                        notSet = false;
+                        NotSet = false;
                         break;
                     case "1":
-                        return new SquareMatrixClone(size, name);
+                        return new SquareMatrixClone(Size, Name);
                     default:
                         Console.WriteLine("Ошибка 2.");
                         break;
                 }
             }
 
-            notSet = true;
+            NotSet = true;
 
-            var elements = new double[size, size];
+            var Elements = new double[Size, Size];
             double currentElement;
-            for (var rowIndex = 0; rowIndex < size; ++rowIndex) {
+            for (var rowIndex = 0; rowIndex < Size; ++rowIndex) {
 
-                for (var columnIndex = 0; columnIndex < size; ++columnIndex) {
+                for (var columnIndex = 0; columnIndex < Size; ++columnIndex) {
 
-                    while (notSet) {
+                    while (NotSet) {
 
                         Console.WriteLine($"Enter element {rowIndex}{columnIndex}: ");
 
@@ -106,57 +106,57 @@ namespace lab3 {
                             Console.WriteLine("Ошибка значения.");
                         } else {
 
-                            elements[rowIndex, columnIndex] = currentElement;
+                            Elements[rowIndex, columnIndex] = currentElement;
 
-                            notSet = false;
+                            NotSet = false;
                         }
                     }
 
-                    notSet = true;
+                    NotSet = true;
                 }
             }
 
-            return new SquareMatrixClone(size, name, elements);
+            return new SquareMatrixClone(Size, Name, Elements);
         }
 
-        private void GetMatrixInfo(SquareMatrixClone matrix) {
+        private void GetMatrixInfo(SquareMatrixClone Matrix) {
 
-            Console.WriteLine($"Матрица {matrix.Name}");
-            Console.WriteLine($"Определитель: {matrix.Determinant()}");
-            Console.WriteLine($"Хеш: {matrix.GetHashCode()}");
-            Console.WriteLine($"Сумма элементов: {matrix.SumOfElements()}");
-            Console.WriteLine($"Строка: {matrix}");
+            Console.WriteLine($"Матрица {Matrix.Name}");
+            Console.WriteLine($"Определитель: {Matrix.Determinant()}");
+            Console.WriteLine($"Хеш: {Matrix.GetHashCode()}");
+            Console.WriteLine($"Сумма элементов: {Matrix.SumOfElements()}");
+            Console.WriteLine($"Строка: {Matrix}");
         }
 
-        private string Comparison(SquareMatrixClone left, SquareMatrixClone right) {
+        private string Comparison(SquareMatrixClone Left, SquareMatrixClone Right) {
 
-            if (left > right) {
+            if (Left > Right) {
 
-                return $"{left.Name} > {right.Name}";
-            } else if (left < right) {
+                return $"{Left.Name} > {Right.Name}";
+            } else if (Left < Right) {
 
-                return $"{left.Name} < {right.Name}";
+                return $"{Left.Name} < {Right.Name}";
             } else {
 
-                return $"{left.Name} = {right.Name}";
+                return $"{Left.Name} = {Right.Name}";
             }
         }
 
         public void Calculator() {
 
             Console.WriteLine("Создать 1ю матрицу:\n");
-            var left = CreateSquareMatrix();
+            var Left = CreateSquareMatrix();
 
             Console.Clear();
 
             Console.WriteLine("Создать 2ю матирцу:\n");
-            var right = CreateSquareMatrix();
+            var Right = CreateSquareMatrix();
 
             Console.Clear();
 
-            left.PrintMatrix();
+            Left.PrintMatrix();
             Console.WriteLine("\n");
-            right.PrintMatrix();
+            Right.PrintMatrix();
             Console.WriteLine("\n");
 
             Console.WriteLine("Создать           0");
@@ -167,10 +167,10 @@ namespace lab3 {
             Console.WriteLine("Транспонировать   5");
             Console.WriteLine("Выйти             6");
 
-            var option = true;
+            var Option = true;
 
             while (true) {
-                while (option) {
+                while (Option) {
 
                     Console.WriteLine("\n");
                     Console.WriteLine("Выберите вариант");
@@ -179,72 +179,72 @@ namespace lab3 {
 
                         case "0":
                             try {
-                                var result = (SquareMatrix)left.Clone();
-                                result += right;
+                                var Result = (SquareMatrix)Left.Clone();
+                                Result += Right;
 
-                                result.PrintMatrix();
+                                Result.PrintMatrix();
                             }
-                            catch (SquareMatrixSizeException exception) {
-                                Console.WriteLine(exception.Message);
+                            catch (SquareMatrixSizeException Exception) {
+                                Console.WriteLine(Exception.Message);
 
                                 break;
                             }
 
-                            option = false;
+                            Option = false;
                             break;
                         case "1":
                             try {
-                                var result = (SquareMatrix)left.Clone();
-                                result -= right;
+                                var Result = (SquareMatrix)Left.Clone();
+                                Result -= Right;
 
-                                result.PrintMatrix();
+                                Result.PrintMatrix();
                             }
-                            catch (SquareMatrixSizeException exception) {
-                                Console.WriteLine(exception.Message);
+                            catch (SquareMatrixSizeException Exception) {
+                                Console.WriteLine(Exception.Message);
 
                                 break;
                             }
 
-                            option = false;
+                            Option = false;
                             break;
                         case "2":
                             try {
-                                var result = (SquareMatrix)left.Clone();
-                                result *= right;
+                                var Result = (SquareMatrix)Left.Clone();
+                                Result *= Right;
 
-                                result.PrintMatrix();
+                                Result.PrintMatrix();
                             }
-                            catch (SquareMatrixSizeException exception) {
-                                Console.WriteLine(exception.Message);
+                            catch (SquareMatrixSizeException Exception) {
+                                Console.WriteLine(Exception.Message);
 
                                 break;
                             }
 
-                            option = false;
+                            Option = false;
                             break;
                         case "3":
-                            Console.WriteLine(Comparison(left, right));
+                            Console.WriteLine(Comparison(Left, Right));
 
-                            option = false;
+                            Option = false;
                             break;
                         case "4":
                             Console.WriteLine("\n");
-                            GetMatrixInfo(left);
+                            GetMatrixInfo(Left);
                             Console.WriteLine();
-                            GetMatrixInfo(right);
+                            GetMatrixInfo(Right);
 
-                            option = false;
+                            Option = false;
                             break;
                         case "5":
-                            var tMatrix = (SquareMatrix)left.Clone();
+                            var tMatrix = (SquareMatrix)Left.Clone();
                             tMatrix = tMatrix.Transpose();
                             tMatrix.PrintMatrix();
 
-                            tMatrix = (SquareMatrix)right.Clone();
+                            tMatrix = (SquareMatrix)Right.Clone();
                             tMatrix = tMatrix.Transpose();
                             tMatrix.PrintMatrix();
 
-                            option = false;
+                            Option = false;
                             break;
                         case "6":
                             return;
@@ -253,7 +253,7 @@ namespace lab3 {
                             break;
                     }
 
-                    option = true;
+                    Option = true;
                 }
             }
         }

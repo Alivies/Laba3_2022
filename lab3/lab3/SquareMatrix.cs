@@ -10,46 +10,46 @@ namespace lab3 {
 
         }
 
-        public SquareMatrix(string name) {
+        public SquareMatrix(string Name) {
 
-            var rand = new Random();
-            Name = name;
-            Size = rand.Next(2, 5);
+            var Rand = new Random();
+            this.Name = Name;
+            Size = Rand.Next(2, 5);
             Matrix = new double[Size, Size];
 
             for (var rowIndex = 0; rowIndex < Size; ++rowIndex) {
 
                 for (var columnIndex = 0; columnIndex < Size; ++columnIndex) {
 
-                    Matrix[rowIndex, columnIndex] = rand.Next(-250, 250);
+                    Matrix[rowIndex, columnIndex] = Rand.Next(-250, 250);
                 }
             }
         }
 
-        public SquareMatrix(int size, string name) {
+        public SquareMatrix(int Size, string Name) {
 
-            Name = name;
-            Size = size;
+            this.Name = Name;
+            this.Size = Size;
             Matrix = new double[Size, Size];
-            var rand = new Random();
+            var Rand = new Random();
 
             for (var rowIndex = 0; rowIndex < Size; ++rowIndex) {
                 for (var columnIndex = 0; columnIndex < Size; ++columnIndex) {
-                    Matrix[rowIndex, columnIndex] = rand.Next(-250, 250);
+                    Matrix[rowIndex, columnIndex] = Rand.Next(-250, 250);
                 }
             }
         }
 
-        public SquareMatrix(int size, string name, double[ , ] elements) {
+        public SquareMatrix(int Size, string Name, double[ , ] Elements) {
 
-            Name = name;
-            Size = size;
+            this.Name = Name;
+            this.Size = Size;
             Matrix = new double[Size, Size];
-            var rand = new Random();
+            var Rand = new Random();
 
             for (var rowIndex = 0; rowIndex < Size; ++rowIndex) {
                 for (var columnIndex = 0; columnIndex < Size; ++columnIndex) {
-                    Matrix[rowIndex, columnIndex] = elements[rowIndex, columnIndex];
+                    Matrix[rowIndex, columnIndex] = Elements[rowIndex, columnIndex];
                 }
             }
         }
@@ -71,8 +71,8 @@ namespace lab3 {
             if (this.Size == 2) {
                 return (this.Matrix[0, 0] * this.Matrix[1, 1] - this.Matrix[0, 1] * this.Matrix[1, 0]);
             }
-            var matrix = new SquareMatrix(this.Size - 1, "Result");
-            return matrix.SumOfElements();
+            var Matrix = new SquareMatrix(this.Size - 1, "Result");
+            return Matrix.SumOfElements();
         }
 
         public SquareMatrix Transpose() {
@@ -90,15 +90,15 @@ namespace lab3 {
         public override string ToString() {
 
             var elementCount = 1;
-            var result = "";
+            var Result = "";
             for (var rowIndex = 0; rowIndex < this.Size; ++rowIndex) {
                 for (var columnIndex = 0; columnIndex < this.Size; ++columnIndex) {
-                    result += ($"Element {elementCount}: {this.Matrix[rowIndex, columnIndex]}  ");
+                    Result += ($"Element {elementCount}: {this.Matrix[rowIndex, columnIndex]}  ");
                     ++elementCount;
                 }
             }
 
-            return result;
+            return Result;
         }
 
         public int CompareTo(object obj) {
@@ -141,101 +141,101 @@ namespace lab3 {
             return (Int32)this.SumOfElements();
         }
 
-        public static SquareMatrix operator + (SquareMatrix left, SquareMatrix right) {
+        public static SquareMatrix operator + (SquareMatrix Left, SquareMatrix Right) {
 
-            if (left.Size != right.Size) {
+            if (Left.Size != Right.Size) {
                 throw new SquareMatrixSizeException("Матрицы должны быть одинакового размера");
             }
 
-            var elementsAmount = left.Size * left.Size;
-            double[ , ] elements = new double[left.Size, left.Size];
-            var elementsCount = 0;
-            for (var rowIndex = 0; rowIndex < left.Size; ++rowIndex) {
-                for (var columnIndex = 0; columnIndex < left.Size; ++columnIndex) {
-                    elements[rowIndex, columnIndex] = left.Matrix[rowIndex, columnIndex] + right.Matrix[rowIndex, columnIndex];
-                    ++elementsCount;
+            var ElementsAmount = Left.Size * Left.Size;
+            double[ , ] Elements = new double[Left.Size, Left.Size];
+            var ElementsCount = 0;
+            for (var rowIndex = 0; rowIndex < Left.Size; ++rowIndex) {
+                for (var columnIndex = 0; columnIndex < Left.Size; ++columnIndex) {
+                    Elements[rowIndex, columnIndex] = Left.Matrix[rowIndex, columnIndex] + Right.Matrix[rowIndex, columnIndex];
+                    ++ElementsCount;
                 }
             }
-            var name = "Result";
-            return new SquareMatrix(left.Size, name, elements);
+            var Name = "Result";
+            return new SquareMatrix(Left.Size, Name, Elements);
         }
 
-        public static SquareMatrix operator - (SquareMatrix left, SquareMatrix right) {
-            if (left.Size != right.Size) {
+        public static SquareMatrix operator - (SquareMatrix Left, SquareMatrix Right) {
+            if (Left.Size != Right.Size) {
                 throw new SquareMatrixSizeException("Матрицы должны быть одинакового размера");
             }
 
-            var elementsAmount = left.Size * left.Size;
+            var ElementsAmount = Left.Size * Left.Size;
            
-            double[,] elements = new double[left.Size, left.Size];
-            var elementsCount = 0;
-            for (var rowIndex = 0; rowIndex < left.Size; ++rowIndex) {
-                for (var columnIndex = 0; columnIndex < left.Size; ++columnIndex) {
-                    elements[rowIndex, columnIndex] = left.Matrix[rowIndex, columnIndex] - right.Matrix[rowIndex, columnIndex];
-                    ++elementsCount;
+            double[,] Elements = new double[Left.Size, Left.Size];
+            var ElementsCount = 0;
+            for (var rowIndex = 0; rowIndex < Left.Size; ++rowIndex) {
+                for (var columnIndex = 0; columnIndex < Left.Size; ++columnIndex) {
+                    Elements[rowIndex, columnIndex] = Left.Matrix[rowIndex, columnIndex] - Right.Matrix[rowIndex, columnIndex];
+                    ++ElementsCount;
                 }
             }
-            var name = "Result";
-            return new SquareMatrix(left.Size, name, elements);
+            var Name = "Result";
+            return new SquareMatrix(Left.Size, Name, Elements);
         }
 
-        public static SquareMatrix operator * (SquareMatrix left, SquareMatrix right) {
-            if (left.Size != right.Size) {
+        public static SquareMatrix operator * (SquareMatrix Left, SquareMatrix Right) {
+            if (Left.Size != Right.Size) {
                 throw new SquareMatrixSizeException("Матрицы должны быть одинакового размера");
             }
 
-            var elementsAmount = left.Size * left.Size;
+            var ElementsAmount = Left.Size * Left.Size;
 
-            double[,] elements = new double[left.Size, left.Size];
-            var elementsCount = 0;
-            for (var rowIndex = 0; rowIndex < left.Size; ++rowIndex) {
-                for (var columnIndex = 0; columnIndex < left.Size; ++columnIndex) {
-                    elements[rowIndex, columnIndex] = left.Matrix[rowIndex, columnIndex] * right.Matrix[rowIndex, columnIndex];
-                    ++elementsCount;
+            double[,] Elements = new double[Left.Size, Left.Size];
+            var ElementsCount = 0;
+            for (var rowIndex = 0; rowIndex < Left.Size; ++rowIndex) {
+                for (var columnIndex = 0; columnIndex < Left.Size; ++columnIndex) {
+                    Elements[rowIndex, columnIndex] = Left.Matrix[rowIndex, columnIndex] * Right.Matrix[rowIndex, columnIndex];
+                    ++ElementsCount;
                 }
             }
-            var name = "Result";
-            return new SquareMatrix(left.Size, name, elements);
+            var Name = "Result";
+            return new SquareMatrix(Left.Size, Name, Elements);
         }
 
-        public static bool operator > (SquareMatrix left, SquareMatrix right) {
-            if (left.SumOfElements() > right.SumOfElements()) {
+        public static bool operator > (SquareMatrix Left, SquareMatrix Right) {
+            if (Left.SumOfElements() > Right.SumOfElements()) {
                 return true;
             }
             return false;
         }
 
-        public static bool operator < (SquareMatrix left, SquareMatrix right) {
-            if (left.SumOfElements() < right.SumOfElements()) {
+        public static bool operator < (SquareMatrix Left, SquareMatrix Right) {
+            if (Left.SumOfElements() < Right.SumOfElements()) {
                 return true;
             }
             return false;
         }
 
-        public static bool operator >= (SquareMatrix left, SquareMatrix right) {
-            if (left.SumOfElements() >= right.SumOfElements()) {
+        public static bool operator >= (SquareMatrix Left, SquareMatrix Right) {
+            if (Left.SumOfElements() >= Right.SumOfElements()) {
                 return true;
             }
             return false;
         }
 
-        public static bool operator <= (SquareMatrix left, SquareMatrix right) {
+        public static bool operator <= (SquareMatrix Left, SquareMatrix Right) {
 
-            if (left.SumOfElements() <= right.SumOfElements()) {
+            if (Left.SumOfElements() <= Right.SumOfElements()) {
                 return true;
             }
             return false;
         }
 
-        public static bool operator == (SquareMatrix left, SquareMatrix right) {
+        public static bool operator == (SquareMatrix Left, SquareMatrix Right) {
 
-            if (left.Size != right.Size) {
+            if (Left.Size != Right.Size) {
                 return false;
             }
 
-            for (var rowIndex = 0; rowIndex < left.Size; ++rowIndex) {
-                for (var columnIndex = 0; columnIndex < left.Size; ++columnIndex) {
-                    if (left.Matrix[rowIndex, columnIndex] != right.Matrix[rowIndex, columnIndex]) {
+            for (var rowIndex = 0; rowIndex < Left.Size; ++rowIndex) {
+                for (var columnIndex = 0; columnIndex < Left.Size; ++columnIndex) {
+                    if (Left.Matrix[rowIndex, columnIndex] != Right.Matrix[rowIndex, columnIndex]) {
                         return false;
                     }
                 }
@@ -243,15 +243,15 @@ namespace lab3 {
             return true;
         }
 
-        public static bool operator != (SquareMatrix left, SquareMatrix right) {
+        public static bool operator != (SquareMatrix Left, SquareMatrix Right) {
 
-            if (left.Size != right.Size) {
+            if (Left.Size != Right.Size) {
                 return true;
             }
 
-            for (var rowIndex = 0; rowIndex < left.Size; ++rowIndex) {
-                for (var columnIndex = 0; columnIndex < left.Size; ++columnIndex) {
-                    if (left.Matrix[rowIndex, columnIndex] != right.Matrix[rowIndex, columnIndex]) {
+            for (var rowIndex = 0; rowIndex < Left.Size; ++rowIndex) {
+                for (var columnIndex = 0; columnIndex < Left.Size; ++columnIndex) {
+                    if (Left.Matrix[rowIndex, columnIndex] != Right.Matrix[rowIndex, columnIndex]) {
                         return true;
                     }
                 }
@@ -260,36 +260,36 @@ namespace lab3 {
             return false;
         }
 
-        public static bool operator true (SquareMatrix matrix) {
+        public static bool operator true (SquareMatrix Matrix) {
 
-            return (matrix.Determinant() != 0);
+            return (Matrix.Determinant() != 0);
         }
 
-        public static bool operator false (SquareMatrix matrix) {
+        public static bool operator false (SquareMatrix Matrix) {
 
-            return (matrix.Determinant() == 0);
+            return (Matrix.Determinant() == 0);
         }
 
-        public static implicit operator string (SquareMatrix matrix) {
+        public static implicit operator string (SquareMatrix Matrix) {
 
             var elementCount = 1;
-            var result = "";
-            for (var rowIndex = 0; rowIndex < matrix.Size; ++rowIndex) {
-                for (var columnIndex = 0; columnIndex < matrix.Size; ++columnIndex) {
-                    result += ($"Element {elementCount}: {matrix.Matrix[rowIndex, columnIndex]}  ");
+            var Result = "";
+            for (var rowIndex = 0; rowIndex < Matrix.Size; ++rowIndex) {
+                for (var columnIndex = 0; columnIndex < Matrix.Size; ++columnIndex) {
+                    Result += ($"Element {elementCount}: {Matrix.Matrix[rowIndex, columnIndex]}  ");
                     ++elementCount;
                 }
             }
 
-            return result;
+            return Result;
         }
 
-        public static implicit operator SquareMatrix (double[ , ] elements) {
+        public static implicit operator SquareMatrix (double[ , ] Elements) {
 
-            var elementsAmount = elements.Length;
-            if (elementsAmount % 2 == 0) {
-                var size = elementsAmount / 2;
-                return new SquareMatrix(size, "Result", elements);
+            var ElementsAmount = Elements.Length;
+            if (ElementsAmount % 2 == 0) {
+                var Size = ElementsAmount / 2;
+                return new SquareMatrix(Size, "Result", Elements);
             } else {
                 throw new SquareMatrixSizeException("Размеры массива должны быть одинаковой длины.");
             }

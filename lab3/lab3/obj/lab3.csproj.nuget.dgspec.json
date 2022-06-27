@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Учёба\\прога\\laba3\\lab3\\lab3\\lab3.csproj": {}
+    "C:\\Users\\Данила\\Source\\Repos\\Alivies\\Laba3_2022\\lab3\\lab3\\lab3.csproj": {}
   },
   "projects": {
-    "E:\\Учёба\\прога\\laba3\\lab3\\lab3\\lab3.csproj": {
+    "C:\\Users\\Данила\\Source\\Repos\\Alivies\\Laba3_2022\\lab3\\lab3\\lab3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Учёба\\прога\\laba3\\lab3\\lab3\\lab3.csproj",
+        "projectUniqueName": "C:\\Users\\Данила\\Source\\Repos\\Alivies\\Laba3_2022\\lab3\\lab3\\lab3.csproj",
         "projectName": "lab3",
-        "projectPath": "E:\\Учёба\\прога\\laba3\\lab3\\lab3\\lab3.csproj",
+        "projectPath": "C:\\Users\\Данила\\Source\\Repos\\Alivies\\Laba3_2022\\lab3\\lab3\\lab3.csproj",
         "packagesPath": "C:\\Users\\Данила\\.nuget\\packages\\",
-        "outputPath": "E:\\Учёба\\прога\\laba3\\lab3\\lab3\\obj\\",
+        "outputPath": "C:\\Users\\Данила\\Source\\Repos\\Alivies\\Laba3_2022\\lab3\\lab3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Данила\\AppData\\Roaming\\NuGet\\NuGet.Config",

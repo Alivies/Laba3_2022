@@ -7,15 +7,15 @@ namespace lab3 {
 
         }
 
-        public SquareMatrixClone(string name) : base(name) {
+        public SquareMatrixClone(string Name) : base(Name) {
 
         }
 
-        public SquareMatrixClone(int size, string name) : base(size, name) {
+        public SquareMatrixClone(int Size, string Name) : base(Size, Name) {
 
         }
 
-        public SquareMatrixClone(int size, string name, double[,] elements) : base(size, name, elements) {
+        public SquareMatrixClone(int Size, string Name, double[,] Elements) : base(Size, Name, Elements) {
 
         }
 
